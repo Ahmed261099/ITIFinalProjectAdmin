@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "project-iti-d4ddb": {
+      "hosting": {
+        "tashtibAdmin": [
+          "project-iti-d4ddb"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "project-iti-d4ddb"
+  }
+}
