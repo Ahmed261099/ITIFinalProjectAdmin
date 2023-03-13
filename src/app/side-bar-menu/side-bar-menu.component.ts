@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./side-bar-menu.component.scss']
 })
 export class SideBarMenuComponent {
-
+  showFiller = false;
 }

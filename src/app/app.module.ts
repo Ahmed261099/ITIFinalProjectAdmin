@@ -10,7 +10,8 @@ import { ClientComponent } from './client/client.component';
 import { HomeComponent } from './home/home.component';
 import { SideBarMenuComponent } from './side-bar-menu/side-bar-menu.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { NotfoundComponent } from './notfound/notfound.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
