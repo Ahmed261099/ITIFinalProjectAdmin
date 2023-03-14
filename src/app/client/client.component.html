@@ -28,7 +28,7 @@
           <tr *ngFor="let user of users; let i= index">
             <!-- <td>{{i + 1}}</td> -->
             <td>{{user.id}}</td>
-            <td><a href="#"><img src= {{user.image}}
+            <td><a href="#"><img [src]="user.image ? user.image : default"
                   class="img-fluid avatar" alt="Avatar"> {{user.name}} </a></td>
             <td>{{user.email}}</td>
             <td>{{user.role}}</td>

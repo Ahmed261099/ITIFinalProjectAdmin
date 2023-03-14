@@ -15,6 +15,7 @@ export class ClientComponent {
   users: any[] = [];
   i: number = 0;
   s: string = "client";
+  default: string = "../../assets/images/default.jpg";
   constructor(
     firestore: AngularFirestore,
     private authService: AuthServiceService,
