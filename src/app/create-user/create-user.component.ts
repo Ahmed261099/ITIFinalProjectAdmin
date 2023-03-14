@@ -17,7 +17,8 @@ export class CreateUserComponent {
     private fb: FormBuilder,
     private usersService: UsersService,
     private router: Router
-  ) {
+  )
+  {
     this.createUser = this.fb.group({
       name: ['', Validators.required],
       username: ['', Validators.required],
