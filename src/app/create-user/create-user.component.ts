@@ -34,33 +34,33 @@ export class CreateUserComponent {
   addUser() {
     if (this.createUser.invalid) return console.log('invalid');
 
-    const User: any = {
-      name: this.createUser.value.name,
-      username: this.createUser.value.username,
-      email: this.createUser.value.email,
-      emailFormated: this.createUser.value.email.toLowerCase(),
-      role: this.rols.nativeElement.value,
-      address: [
-        {
-          city: this.createUser.value.city,
-          street: this.createUser.value.street,
-        },
-      ],
-      phone: this.createUser.value.phone,
-      password: this.createUser.value.password,
-      timestamp: new Date(),
-      image: '',
-      cart: [],
-      wishlist: [],
-      experience: '',
-      feedback: [],
-      messages: [],
-      portofolio: [],
-      spetialization: '',
-      rate: 0,
-    };
-
-    this.usersService
+    if(this.rols.nativeElement.value === "Engineer" || this.rols.nativeElement.value === "Provider"){
+      const User: any = {
+        name: this.createUser.value.name,
+        username: this.createUser.value.username,
+        email: this.createUser.value.email,
+        emailFormated: this.createUser.value.email.toLowerCase(),
+        role: this.rols.nativeElement.value,
+        address: [
+          {
+            city: this.createUser.value.city,
+            street: this.createUser.value.street,
+          },
+        ],
+        phone: this.createUser.value.phone,
+        password: this.createUser.value.password,
+        timestamp: new Date(),
+        image: '',
+        cart: [],
+        wishlist: [],
+        experience: '',
+        feedback: [],
+        messages: [],
+        portofolio: [],
+        spetialization: '',
+        rate: 0,
+      };
+      this.usersService
       .addUser(User)
       .then(() => {
         alert('added successfully');
@@ -73,5 +73,45 @@ export class CreateUserComponent {
       .catch((error) => {
         console.log(error);
       });
+    }
+    else{
+      const User: any = {
+        name: this.createUser.value.name,
+        username: this.createUser.value.username,
+        email: this.createUser.value.email,
+        emailFormated: this.createUser.value.email.toLowerCase(),
+        role: this.rols.nativeElement.value,
+        address: [
+          {
+            city: this.createUser.value.city,
+            street: this.createUser.value.street,
+          },
+        ],
+        phone: this.createUser.value.phone,
+        password: this.createUser.value.password,
+        timestamp: new Date(),
+        image: '',
+        cart: [],
+        wishlist: [],
+        messages: [],
+      };
+      this.usersService
+      .addUser(User)
+      .then(() => {
+        alert('added successfully');
+        // if (this.rols.nativeElement.value === 'Engineer')
+        //   this.router.navigate(['/engineer']);
+        // else if (this.rols.nativeElement.value === 'Provider')
+        //   this.router.navigate(['/provider']);
+        // else
+        this.router.navigate(['/client']);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
+
+
   }
 }

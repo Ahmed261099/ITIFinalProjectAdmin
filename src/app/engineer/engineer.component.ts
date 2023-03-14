@@ -14,6 +14,7 @@ export class EngineerComponent {
   users: any[] = [];
   i: number = 0
   s: string =  "engineer";
+  default: string = "../../assets/images/default.jpg";
   constructor(
     firestore: AngularFirestore,
     private authService: AuthServiceService,
