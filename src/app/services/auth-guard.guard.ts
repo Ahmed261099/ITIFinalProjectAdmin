@@ -16,16 +16,19 @@ export class AuthGuardGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return new Promise((resolve, reject) => {
         this.afAuth.onAuthStateChanged((user) => {
+          console.log(user);
+
             if (user) {
+              // this.router.navigate(['/Home']);
                 resolve(true);
             } else {
                 console.log('user is not logged in');
-                this.router.navigate(['/login']);
                 resolve(false);
+                this.router.navigate(['/login']);
             }
         });
     });
 
   }
-  
+
 }

@@ -33,15 +33,9 @@ import { AngularFireModule } from '@angular/fire/compat';
 
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
-
-// import { AngularFireModule } from '@angular/fire';
-// import { AngularFirestoreModule } from '@angular/fire/firestore';
-// import { AngularFireDatabaseModule } from '@angular/fire/database';
-// import { AngularFireStorageModule } from '@angular/fire/storage';
-// import { environment } from '../environments/environment';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { NgPipesModule } from 'ng-pipes';
 
 @NgModule({
   declarations: [
@@ -56,9 +50,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     CreateUserComponent,
     LoginComponent,
     EditUserComponent,
-
-    // EnvironmentsComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -79,9 +70,12 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgPipesModule,
   ],
   providers: [
-    ScreenTrackingService,UserTrackingService
+    ScreenTrackingService,UserTrackingService,
+    BrowserAnimationsModule,
+    MatSidenavModule
   ],
   bootstrap: [AppComponent]
 })

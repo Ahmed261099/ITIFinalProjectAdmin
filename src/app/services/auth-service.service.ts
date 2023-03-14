@@ -5,19 +5,19 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Router } from '@angular/router';
 import { updateProfile } from 'firebase/auth';
 import { BehaviorSubject, Observable } from 'rxjs';
+// import 'ngx-toastr/toastr';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthServiceService {
 
-    userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
-
+    userLoggedIn: boolean;
     constructor(private router: Router, private afAuth: AngularFireAuth, private afs: AngularFirestore) {
         this.userLoggedIn = false;
 
-        this.afAuth.onAuthStateChanged((user) => {              // set up a subscription to always know the login status of the user
-            if (user?.uid === "3F7lmjgoX1aQA2ScNfQ7ZbmgHum2") {
+        this.afAuth.onAuthStateChanged((user) => {
+            if (user) {
                 this.userLoggedIn = true;
             } else {
                 this.userLoggedIn = false;
@@ -28,19 +28,19 @@ export class AuthServiceService {
     loginUser(email: string, password: string): Promise<any> {
         return this.afAuth.signInWithEmailAndPassword(email, password)
             .then(({user}) => {
-              if(user?.uid === "3F7lmjgoX1aQA2ScNfQ7ZbmgHum2"){
+              // if(user){
                 console.log('login success');
                 localStorage.setItem("token", "true");
-                this.router.navigate(['/engineer']);
-              }
-              else{
-                alert("you are not admin");
-                this.router.navigate(['/login']);
-              }
+                this.router.navigate(['/Home']);
+              // }
+              // else{
+              //   alert("you are not admin");
+              //   this.router.navigate(['/login']);
+              // }
 
             })
             .catch(error => {
-                console.log('error code', error.code);
+                alert('error code' + error.code);
                 this.router.navigate(['/login']);
             });
     }
@@ -58,18 +58,5 @@ export class AuthServiceService {
                 if (error.code)
                     return error;
             });
-    }
-
-    setUserInfo(payload: object) {
-        console.log('Auth Service: saving user info...');
-        this.afs.collection('users')
-            .add(payload).then(function (res) {
-                console.log("Auth Service: setUserInfo response...")
-                console.log(res);
-            })
-    }
-
-    getCurrentUser() {
-        return this.afAuth.currentUser;
     }
 }

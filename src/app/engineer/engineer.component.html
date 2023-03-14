@@ -1,5 +1,5 @@
 <div class="container-xl">
-  <button class="btn btn-dark" (click)="logout()">Logout</button>
+  <!-- <button class="btn btn-dark" (click)="logout()">Logout</button> -->
   <div class="table-responsive">
     <div class="table-wrapper">
       <div class="table-title">
@@ -8,9 +8,10 @@
             <h2>Engineers <b>Management</b></h2>
           </div>
           <div class="col-sm-7">
-            <a href="#" class="btn btn-secondary "><i class="fa-solid
+            <a routerLink="/add" class="btn btn-secondary "><i class="fa-solid
                 fa-user-plus"></i>
-              <span>Add New Engineer</span></a>
+              <span>Add New Engineer</span>
+            </a>
           </div>
         </div>
       </div>
@@ -25,10 +26,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users | async ; let i= index">
+          <tr *ngFor="let user of users; let i= index">
+            <!-- <td>{{i + 1}}</td> -->
             <td>{{user.id}}</td>
-            <td><a href="#"><img src="/examples/images/avatar/1.jpg"
-                  class="avatar" alt="Avatar"> {{user.name}} </a></td>
+            <td><a href="#"><img src={{user.image}}
+                  class="img-fluid avatar" alt="user"> {{user.name}} </a></td>
             <td>{{user.email}}</td>
             <td>{{user.role}}</td>
             <td class="col-2">

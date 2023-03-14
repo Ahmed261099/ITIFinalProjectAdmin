@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthServiceService } from '../services/auth-service.service';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-client',
@@ -6,5 +11,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./client.component.scss']
 })
 export class ClientComponent {
+
+  users: any[] = [];
+  i: number = 0;
+  s: string = "client";
+  constructor(
+    firestore: AngularFirestore,
+    private authService: AuthServiceService,
+    private usersService: UsersService,
+    private router: Router
+  ) {
+
+  }
+
+  // ngOnInit(): void {
+  //   // if (!this.authService.userLoggedIn) {
+  //   //   this.router.navigate(['/login']);
+  //   // }
+
+  // }
+
+  ngOnInit(): void {
+    this.getClients();
+  }
+
+  getClients() {
+    this.usersService.getUsers(this.s).subscribe(data => {
+      this.users = [];
+      data.forEach((element: any) => {
+        this.users.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.users);
+    });
+  }
 
 }

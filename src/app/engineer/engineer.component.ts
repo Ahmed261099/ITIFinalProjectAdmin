@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthServiceService } from '../services/auth-service.service';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-engineer',
@@ -10,39 +11,34 @@ import { AuthServiceService } from '../services/auth-service.service';
   styleUrls: ['./engineer.component.scss'],
 })
 export class EngineerComponent {
-  users: Observable<any[]>;
+  users: any[] = [];
+  i: number = 0
+  s: string =  "engineer";
   constructor(
     firestore: AngularFirestore,
     private authService: AuthServiceService,
+    private usersService: UsersService,
     private router: Router
   ) {
-    this.users = firestore.collection('engineers').valueChanges();
 
-    // console.log(this.users);
   }
 
   ngOnInit(): void {
-    if (!this.authService.userLoggedIn) {  
-      this.router.navigate(['/login']);
-    }
-    
+    this.getEngineers();
   }
 
-  // products:any=[{
-  //   id:1,
-  //   name: "yasmin",
-  //   age: 20
-
-  // },
-  // {
-  //   id:1,
-  //     name: "yasmin",
-  //     age: 20
-  // }]
-
-  logout() {
-    console.log('logged out');
-    this.authService.logoutUser();
-    console.log('logged out successfully');
+  getEngineers() {
+    this.usersService.getUsers(this.s).subscribe(data => {
+      this.users = [];
+      data.forEach((element: any) => {
+        this.users.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.users);
+    });
   }
+
+
 }

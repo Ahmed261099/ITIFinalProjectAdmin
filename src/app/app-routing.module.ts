@@ -7,20 +7,22 @@ import { EngineerComponent } from './engineer/engineer.component';
 import { LoginComponent } from './login/login.component';
 import { ProviderComponent } from './provider/provider.component';
 import { AuthGuardGuard } from './services/auth-guard.guard';
+import { HomeComponent } from './home/home.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
-  {path: "login", component: LoginComponent, canActivate: [AuthGuardGuard] },
-  // {path: "add", children: [
-  //   {path: "", component: CreateUserComponent},
-  //   {path: "", component: CreateUserComponent},
-  // ] },
+  {path:"", redirectTo:"Home" , pathMatch:"full"},
+  {path:"Home" , component:HomeComponent},
+  {path: "login", component: LoginComponent },
+  {path: "add", component: CreateUserComponent},
   {path: "engineer", children:[
     {path: "", component: EngineerComponent},
-    {path: "add/:userID", component: CreateUserComponent}
-  ], canActivate: [AuthGuardGuard] },
+    // {path: "add/:userID", component: CreateUserComponent, canActivate: [AuthGuardGuard]}
+  ] },
   {path: "provider", component: ProviderComponent },
   {path: "client", component: ClientComponent },
   {path: "edit", component: EditUserComponent },
+  {path:"**" , component:NotfoundComponent}
 ];
 
 @NgModule({

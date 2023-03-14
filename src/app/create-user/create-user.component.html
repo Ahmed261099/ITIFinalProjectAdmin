@@ -3,35 +3,52 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="card text-center">
   <div class="card-body">
-      <h5 class=" mb-3">Add User
+      <h5 class="fs-2 fw-bold mb-3">Add User
           <!-- <div class="spinner-border float-end" role="status">
               <span class="visually-hidden">Loading...</span>
           </div> -->
       </h5>
-      <form >
+      <form [formGroup]="createUser" (ngSubmit)="addUser()">
           <div class="input-group input-group-lg mb-3">
               <span class="input-group-text">
                   <i class="fas fa-user-circle" ></i>
               </span>
               <input type="text" formControlName="name" class="form-control" placeholder="Name">
+              <span *ngIf="createUser.get('name')?.hasError('required') && createUser.get('name')?.touched" class="text-danger errorLabel">
+                the <strong>name</strong> is required
+              </span>
           </div>
           <div class="input-group input-group-lg mb-3">
             <span class="input-group-text">
                 <i class="fas fa-user-circle" ></i>
             </span>
-            <input type="text" formControlName="username" class="form-control" placeholder="UserName">
+            <input type="text" formControlName="username" class="form-control d-block" placeholder="UserName">
+            <p *ngIf="createUser.get('username')?.hasError('required') && createUser.get('username')?.touched" class="text-danger errorLabel">
+              the <strong>username</strong> is required
+            </p>
           </div><div class="input-group input-group-lg mb-3">
           <span class="input-group-text">
             <i class="fa-solid fa-envelope"></i>
           </span>
           <input type="text" formControlName="email" class="form-control" placeholder="Email">
+          <span *ngIf="createUser.get('email')?.hasError('required') && createUser.get('email')?.touched" class="text-danger errorLabel">
+            the <strong>email</strong> is required
+          </span>
+          <span *ngIf="createUser.get('email')?.hasError('email') && createUser.get('email')?.touched" class="text-danger errorLabel">
+            the <strong>email</strong> is invalid
+          </span>
           </div>
           <div class="input-group input-group-lg mb-3">
               <span class="input-group-text">
                 <i class="fa-solid fa-briefcase"></i>
               </span>
-              <input type="text" formControlName="role" class="form-control"
-                  placeholder="Role">
+              <!-- <input type="text" formControlName="role" class="form-control" > -->
+              <select #rols class="form-select">
+                <option default>Pick a role</option>
+                <option>Engineer</option>
+                <option>Provider</option>
+                <option>customer</option>
+              </select>
           </div>
           <div class="row">
 
@@ -42,6 +59,9 @@
                     </span>
                     <input type="text" formControlName="city" class="form-control"
                         placeholder="city">
+                        <span *ngIf="createUser.get('city')?.hasError('required') && createUser.get('city')?.touched" class="text-danger errorLabel">
+                          the <strong>city</strong> is required
+                        </span>
                 </div>
             </div>
               <div class="col-lg-6">
@@ -51,33 +71,38 @@
                       </span>
                       <input type="text" formControlName="street" class="form-control"
                           placeholder="street">
+                          <span *ngIf="createUser.get('street')?.hasError('required') && createUser.get('street')?.touched" class="text-danger errorLabel">
+                            the <strong>street</strong> is required
+                          </span>
                   </div>
               </div>
           </div>
             <div class="input-group input-group-lg mb-3">
-                <span class="input-group-text">
-                    <i class="fas fa-calendar-alt" ></i>
-                </span>
-                <input type="date" formControlName="createdAt" class="form-control"
-                    placeholder="createdAt">
-            </div>
-            <div class="input-group input-group-lg mb-3">
               <span class="input-group-text">
                 <i class="fa-solid fa-phone"></i>
               </span>
-              <input type="text" formControlName="phone" class="form-control" placeholder="Phone">
+              <input type="text" formControlName="phone" class="form-control" placeholder="Phone number">
+              <span *ngIf="createUser.get('phone')?.hasError('required') && createUser.get('phone')?.touched" class="text-danger errorLabel">
+                the <strong>phone</strong> is required
+              </span>
           </div>
           <div class="input-group input-group-lg mb-3">
             <span class="input-group-text">
               <i class="fa-solid fa-lock"></i>
             </span>
             <input type="password" formControlName="password" class="form-control" placeholder="Password">
+            <span *ngIf="createUser.get('password')?.hasError('required') && createUser.get('password')?.touched" class="text-danger errorLabel">
+              the <strong>password</strong> is required
+            </span>
           </div>
           <div class="input-group input-group-lg mb-3">
             <span class="input-group-text">
               <i class="fa-solid fa-lock"></i>
             </span>
             <input type="password" formControlName="confirmPassword" class="form-control" placeholder="confirmPassword">
+            <span *ngIf="createUser.get('password')?.hasError('required') && createUser.get('password')?.touched" class="text-danger errorLabel">
+              <strong>confirm password</strong> is required
+            </span>
         </div>
           <div class="d-grid gap-2">
               <button class="btn color btn-lg" type="submit">
