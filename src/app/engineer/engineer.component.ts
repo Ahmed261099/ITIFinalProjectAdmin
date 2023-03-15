@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthServiceService } from '../services/auth-service.service';
-import { UsersService } from '../services/users.service';
+import { AuthServiceService } from '../../services/auth-service.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-engineer',

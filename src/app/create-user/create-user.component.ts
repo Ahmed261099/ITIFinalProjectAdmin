@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UsersService } from '../services/users.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-create-user',
@@ -12,11 +12,17 @@ export class CreateUserComponent {
   @ViewChild('rols') rols!: ElementRef;
 
   createUser: FormGroup;
-
+  submitted = false;
+  loading = false;
+  id: string | null ;
+  role : string | null ;
+  title: string = `Add User`
+  editFlag:boolean = true ;
   constructor(
     private fb: FormBuilder,
     private usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private _ActivatedRoute: ActivatedRoute
   )
   {
     this.createUser = this.fb.group({
@@ -30,6 +36,31 @@ export class CreateUserComponent {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });
+    this.id = this._ActivatedRoute.snapshot.paramMap.get('id');
+    this.role = this._ActivatedRoute.snapshot.paramMap.get('role');
+    console.log(this.id)
+    console.log(this.role)
+  }
+  ngOnInit(): void {
+    this.isEdit();
+  }
+
+  addEditUser()
+  {
+    this.submitted = true ;
+    if(this.createUser.invalid)
+    {
+      return ;
+    }
+    if(this.id === null && this.role === null)
+    {
+      this.addUser();
+    }
+    else
+    {
+      this.EditUser(this.id , this.role);
+      this.editFlag = false ;
+    }
   }
 
   addUser() {
@@ -61,10 +92,12 @@ export class CreateUserComponent {
         spetialization: '',
         rate: 0,
       };
+      this.loading = true ;
       this.usersService
       .addUser(User)
       .then(() => {
         alert('added successfully');
+        this.loading = false ;
         if (this.rols.nativeElement.value === 'Engineer')
           this.router.navigate(['/engineer']);
         else if (this.rols.nativeElement.value === 'Provider')
@@ -73,6 +106,7 @@ export class CreateUserComponent {
       })
       .catch((error) => {
         console.log(error);
+        this.loading = false ;
       });
     }
     else{
@@ -112,7 +146,54 @@ export class CreateUserComponent {
       });
     }
 
+  }
 
+  EditUser(id: any , role:any)
+  {
+      const user:any = {
+        name:  this.createUser.value.name ,
+        username:  this.createUser.value.username,
+        email:  this.createUser.value.email,
+        emailFormated: this.createUser.value.email.toLowerCase(),
+        address: [
+          {
+            city : this.createUser.value.city,
+            street: this.createUser.value.street
+          }
+        ],
+        phone: this.createUser.value.phone,
+        password: this.createUser.value.password
+      }
+
+      this.loading = true ;
+      this.usersService.updateUser(id , role ,user ).then(() => {
+        this.loading = false ;
+        this.router.navigate([`/${role}`])
+      })
+  }
+  isEdit()
+  {
+    if(this.id !== null && this.role !== null)
+    {
+      this.title = `Edit ${this.role}` ;
+      this.loading = true;
+      this.editFlag = false ;
+      this.usersService.getSingleUser(this.id , this.role).subscribe( (data) => {
+        this.loading = false ;
+        console.log(data.payload.data().wishlist)
+        this.createUser.setValue({
+          name: data.payload.data()['name'],
+          username: data.payload.data()['username'],
+          email: data.payload.data()['email'],
+          city: data.payload.data().address[0].city,
+          street: data.payload.data().address[0].street,
+          phone: data.payload.data()['phone'],
+          password: data.payload.data()['password'],
+          confirmPassword: data.payload.data()['password'],
+          
+        })
+      })
+    }
 
   }
 }
