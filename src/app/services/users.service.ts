@@ -49,9 +49,9 @@ export class UsersService {
   }
 
 
-  deleteField(id: string){
-    this.firestore.doc(`/engineers/${id}/feedback[0]`).delete();
-  }
+  // deleteField(id: string){
+  //   this.firestore.doc(`/engineers/${id}/feedback[0]`).delete();
+  // }
 
   editField(id: string, data:any): Promise<any> {
     return this.firestore.collection('providers').doc(id).update(data);
