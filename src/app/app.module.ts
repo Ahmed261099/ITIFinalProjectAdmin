@@ -36,6 +36,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { NgPipesModule } from 'ng-pipes';
+import { SingleUserComponent } from './single-user/single-user.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NgPipesModule } from 'ng-pipes';
     CreateUserComponent,
     LoginComponent,
     EditUserComponent,
+    SingleUserComponent,
   ],
   imports: [
     BrowserModule,

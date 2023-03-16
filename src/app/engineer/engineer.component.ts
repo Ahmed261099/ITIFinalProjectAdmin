@@ -14,21 +14,21 @@ export class EngineerComponent {
   users: any[] = [];
   i: number = 0
   s: string =  "engineer";
+  result: boolean = false;
   default: string = "../../assets/images/default.jpg";
   constructor(
     firestore: AngularFirestore,
     private authService: AuthServiceService,
     private usersService: UsersService,
-    private router: Router
-  ) {
-
-  }
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.getEngineers();
   }
 
   getEngineers() {
+    console.log(this.s);
     this.usersService.getUsers(this.s).subscribe(data => {
       this.users = [];
       data.forEach((element: any) => {
@@ -41,5 +41,17 @@ export class EngineerComponent {
     });
   }
 
+  handleDelete(email: string, password:string, id: string){
+    console.log("delete?");
+    this.result = confirm("Are you sure to delete?");
+    if(this.result){
+      this.authService.deleteUserFromAuth(email, password);
+      this.usersService.deleteSingleUser(id).then(() => {
+      console.log('deleted successfully');
+    }).catch(error => {
+      console.log(error);
+    })
+    }
+  }
 
 }

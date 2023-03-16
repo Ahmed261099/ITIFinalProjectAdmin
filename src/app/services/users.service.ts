@@ -7,7 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class UsersService {
 
-  constructor(private firestore: AngularFirestore) { }
+  // addresses: Observable<any>;
+
+
+  constructor(private firestore: AngularFirestore) {
+    // this.addresses = null;
+  }
 
   addUser(user: any): Promise<any> {
     if(user.role === "Engineer"){
@@ -20,21 +25,40 @@ export class UsersService {
       return this.firestore.collection('users').add(user);
   }
 
-  // , ref => ref.orderBy('name', 'asc')
-
   getUsers(s: string): Observable<any> {
     console.log(s);
     if(s === "engineer"){
-      return this.firestore.collection('engineers').snapshotChanges();
+      return this.firestore.collection('engineers', ref => ref.orderBy('name'.toLowerCase(), 'asc')).snapshotChanges();
     }
     else if(s === "provider"){
-      return this.firestore.collection('providers').snapshotChanges();
+      return this.firestore.collection('providers', ref => ref.orderBy('name'.toLowerCase(), 'asc')).snapshotChanges();
     }
     else
-      return this.firestore.collection('users').snapshotChanges();
+      return this.firestore.collection('users', ref => ref.orderBy('name'.toLowerCase(), 'asc')).snapshotChanges();
   }
 
-  getSingleUser(id: string): Observable<any> {
-    return this.firestore.collection('Engineer').doc(id).snapshotChanges();
+  getSingleUser(id: string, role: any): Observable<any> {
+    console.log(role);
+    if(role === "Engineer"){
+      return this.firestore.collection('engineers').doc(id).snapshotChanges();
+    } else if( role === "Provider"){
+      return this.firestore.collection('providers').doc(id).snapshotChanges();
+    } else {
+      return this.firestore.collection('users').doc(id).snapshotChanges();
+    }
   }
+
+
+  deleteField(id: string){
+    this.firestore.doc(`/engineers/${id}/feedback[0]`).delete();
+  }
+
+  editField(id: string, data:any): Promise<any> {
+    return this.firestore.collection('providers').doc(id).update(data);
+  }
+
+  deleteSingleUser(id: string): Promise<any>{
+    return this.firestore.collection('providers').doc(id).delete();
+  }
+
 }

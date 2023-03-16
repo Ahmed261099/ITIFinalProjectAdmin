@@ -14,10 +14,10 @@
           </div>
         </div>
       </div>
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover align-middle">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
+            <th>id</th>
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
@@ -28,17 +28,16 @@
           <tr *ngFor="let user of users; let i= index">
             <!-- <td>{{i + 1}}</td> -->
             <td>{{user.id}}</td>
-            <td><a href="#"><img [src]="user.image ? user.image : default"
-                  class="img-fluid avatar" alt="Avatar"> {{user.name}} </a></td>
+            <td><a><img [src]="user.image ? user.image : default" class="img-fluid avatar" alt="Avatar"> {{user.name}} </a></td>
             <td>{{user.email}}</td>
             <td>{{user.role}}</td>
             <td class="col-2">
-              <a href="#" class="text-primary" title="Show detils"
-                data-toggle="tooltip" routerLink="/engineer/add/{{user.id}}"><i class="fa-solid fa-eye"></i></a>
-              <a href="#" class="text-warning" title="Edit"
+              <a class="text-primary" title="Show detils"
+                data-toggle="tooltip" routerLink="/client/viewUser/{{user.id}}"><i class="fa-solid fa-eye"></i></a>
+              <a class="text-warning" title="Edit"
                 data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a href="#" class="text-danger" title="Delete"
-                data-toggle="tooltip"><i class="fa-solid fa-circle-xmark"></i></a>
+              <a class="text-danger" title="Delete"
+                data-toggle="tooltip hover"><i class="fa-solid fa-trash"></i></a>
             </td>
           </tr>
         </tbody>

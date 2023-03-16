@@ -27,6 +27,7 @@ export class ProviderComponent {
   }
 
   ngOnInit(): void {
+    console.log("object");
     this.getProviders()
     // if (!this.authService.userLoggedIn) {
     //   this.router.navigate(['/login']);
@@ -35,6 +36,7 @@ export class ProviderComponent {
   }
 
   getProviders() {
+    console.log(this.s);
     this.usersService.getUsers(this.s).subscribe(data => {
       this.users = [];
       data.forEach((element: any) => {

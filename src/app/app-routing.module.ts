@@ -9,6 +9,7 @@ import { ProviderComponent } from './provider/provider.component';
 import { AuthGuardGuard } from './services/auth-guard.guard';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { SingleUserComponent } from './single-user/single-user.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"Home" , pathMatch:"full"},
@@ -17,10 +18,19 @@ const routes: Routes = [
   {path: "add", component: CreateUserComponent},
   {path: "engineer", children:[
     {path: "", component: EngineerComponent},
-    // {path: "add/:userID", component: CreateUserComponent, canActivate: [AuthGuardGuard]}
+    {path: "viewUser/:userID", component: SingleUserComponent}
+    // {path: "add/:userID", component: SingleUserComponent, canActivate: [AuthGuardGuard]}
   ] },
-  {path: "provider", component: ProviderComponent },
-  {path: "client", component: ClientComponent },
+  {path: "provider", children:[
+    {path: "", component: ProviderComponent},
+    {path: "viewUser/:userID", component: SingleUserComponent}
+    // {path: "add/:userID", component: SingleUserComponent, canActivate: [AuthGuardGuard]}
+  ] },
+  {path: "client", children:[
+    {path: "", component: ClientComponent },
+    {path: "viewUser/:userID", component: SingleUserComponent},
+  ]
+  },
   {path: "edit", component: EditUserComponent },
   {path:"**" , component:NotfoundComponent}
 ];

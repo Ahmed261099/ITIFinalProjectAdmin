@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../services/auth-service.service';
 import { UsersService } from '../services/users.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class CreateUserComponent {
   constructor(
     private fb: FormBuilder,
     private usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private authService: AuthServiceService
   ) {
     this.createUser = this.fb.group({
       name: ['', Validators.required],
@@ -33,6 +35,8 @@ export class CreateUserComponent {
 
   addUser() {
     if (this.createUser.invalid) return console.log('invalid');
+
+
 
     if(this.rols.nativeElement.value === "Engineer" || this.rols.nativeElement.value === "Provider"){
       const User: any = {
@@ -60,6 +64,9 @@ export class CreateUserComponent {
         spetialization: '',
         rate: 0,
       };
+
+      this.authService.SignUp(User.email, User.password);
+      
       this.usersService
       .addUser(User)
       .then(() => {
@@ -110,8 +117,5 @@ export class CreateUserComponent {
         console.log(error);
       });
     }
-
-
-
   }
 }
