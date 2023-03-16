@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientComponent } from './client/client.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { EngineerComponent } from './engineer/engineer.component';
 import { LoginComponent } from './login/login.component';
 import { ProviderComponent } from './provider/provider.component';
 import { AuthGuardGuard } from '../services/auth-guard.guard';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"Home" , pathMatch:"full"},
@@ -22,7 +22,7 @@ const routes: Routes = [
   ] },
   {path: "Provider", component: ProviderComponent },
   {path: "customer", component: ClientComponent },
-  // {path: "edit", component: EditUserComponent },
+  {path: "category/:id", component: CategoryComponent },
   {path:"**" , component:NotfoundComponent}
 ];
 

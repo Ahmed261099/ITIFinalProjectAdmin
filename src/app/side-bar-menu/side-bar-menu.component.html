@@ -59,25 +59,29 @@
           </li>
           <li class="nav-item btn btn-outline-dark border-0">
             <a class="nav-link fs-4 d-flex justify-content-between align-items-center w-100 h-100" routerLinkActive="btn btn-dark text-white px-3" routerLink="/Engineer">
-              <span>Engineer </span><i class="fas fa-server"></i>
+              <span>Engineers </span><i class="fas fa-server"></i>
             </a>
           </li>
           <li class="nav-item btn btn-outline-dark border-0">
             <a class="nav-link fs-4 d-flex justify-content-between align-items-center" routerLinkActive="btn btn-dark text-white px-3"  routerLink="/Provider">
-              <span>Provider </span><i class="fas fa-server"></i>
+              <span>Providers </span><i class="fas fa-server"></i>
             </a>
           </li>
           <li class="nav-item btn btn-outline-dark border-0">
             <a class="nav-link fs-4 d-flex justify-content-between align-items-center" routerLinkActive="btn btn-dark text-white px-3" routerLink="/customer">
-              <span>Client </span><i class="fas fa-server"></i>
+              <span>Clients </span><i class="fas fa-server"></i>
             </a>
           </li>
-          <li class="nav-item btn btn-outline-dark border-0">
-            <a class="nav-link fs-4 d-flex justify-content-between align-items-center" routerLinkActive="btn btn-dark text-white px-3" routerLink="/category">
-              <span>Category </span><i class="fas fa-server"></i>
-            </a>
+          <li class="nav-item btn btn-outline-dark border-0 dropdown">
+            <p class="nav-link fs-4 d-flex justify-content-between align-items-center dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categories
+            </p>
+            <ul class="dropdown-menu w-75 border-0 bg-transparent py-4 ">
+              <li *ngFor="let category of categories" class="nav-item btn btn-outline-dark border-0 w-100">
+                <a class="nav-link fs-4 d-flex justify-content-between align-items-center w-100" routerLinkActive="btn btn-dark text-white px-3" routerLink="/category/{{category.id}}">{{category.id}}</a>
+              </li>
+            </ul>
           </li>
-
       </ul>
     </div>
   </div>
