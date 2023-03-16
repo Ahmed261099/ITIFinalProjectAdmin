@@ -3,12 +3,13 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="card text-center">
   <div class="card-body">
-      <h5 class="fs-2 fw-bold mb-3">Add User
-          <!-- <div class="spinner-border float-end" role="status">
-              <span class="visually-hidden">Loading...</span>
-          </div> -->
+      <h5 class="fs-2 fw-bold mb-3 bg-dark py-3 text-white">{{title}}
+        <div *ngIf="loading" class="spinner-border float-right" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
       </h5>
-      <form [formGroup]="createUser" (ngSubmit)="addUser()">
+      <span *ngIf="submitted && createUser.invalid" class="badge badge-danger text-danger"> ALL FIELDS ARE REQUIRED</span>
+      <form  [formGroup]="createUser" (ngSubmit)="addEditUser()">
           <div class="input-group input-group-lg mb-3">
               <span class="input-group-text">
                   <i class="fas fa-user-circle" ></i>
@@ -38,7 +39,7 @@
             the <strong>email</strong> is invalid
           </span>
           </div>
-          <div class="input-group input-group-lg mb-3">
+          <div *ngIf="editFlag" class="input-group input-group-lg mb-3">
               <span class="input-group-text">
                 <i class="fa-solid fa-briefcase"></i>
               </span>
@@ -105,8 +106,8 @@
             </span>
         </div>
           <div class="d-grid gap-2">
-              <button class="btn color btn-lg" type="submit">
-                  <i class="fas fa-database"></i> Add
+              <button Class="btn color btn-lg" type="submit">
+                  <i class="fas fa-database"></i> {{title}}
               </button>
           </div>
       </form>

@@ -28,7 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
+
 import { AngularFireModule } from '@angular/fire/compat';
 
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
@@ -36,7 +36,9 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { NgPipesModule } from 'ng-pipes';
+import { CategoryComponent } from './category/category.component';
 import { SingleUserComponent } from './single-user/single-user.component';
+
 
 @NgModule({
   declarations: [
@@ -48,10 +50,11 @@ import { SingleUserComponent } from './single-user/single-user.component';
     HomeComponent,
     SideBarMenuComponent,
     NotfoundComponent,
-    CreateUserComponent,
+    // CreateUserComponent,
     LoginComponent,
-    EditUserComponent,
-    SingleUserComponent,
+    // EditUserComponent,
+    CategoryComponent,
+    // SingleUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { SingleUserComponent } from './single-user/single-user.component';
     NgPipesModule,
   ],
   providers: [
-    ScreenTrackingService,UserTrackingService,
+    ScreenTrackingService,
+    UserTrackingService,
     BrowserAnimationsModule,
     MatSidenavModule
   ],

@@ -32,9 +32,9 @@
             <td>{{user.email}}</td>
             <td>{{user.role}}</td>
             <td class="col-2">
-              <a class="text-primary" title="Show detils"
-                data-toggle="tooltip" routerLink="/client/viewUser/{{user.id}}"><i class="fa-solid fa-eye"></i></a>
-              <a class="text-warning" title="Edit"
+              <a href="#" class="text-primary" title="Show detils"
+                data-toggle="tooltip" routerLink="/customer/viewUser/{{user.id}}"><i class="fa-solid fa-eye"></i></a>
+              <a routerLink="/edit/{{user.role}}/{{user.id}}" class="text-warning" title="Edit"
                 data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
               <a class="text-danger" title="Delete"
                 data-toggle="tooltip hover"><i class="fa-solid fa-trash"></i></a>
