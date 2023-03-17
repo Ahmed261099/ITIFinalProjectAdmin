@@ -15,30 +15,33 @@
                   <i class="fas fa-user-circle" ></i>
               </span>
               <input type="text" formControlName="name" class="form-control" placeholder="Name">
-              <span *ngIf="createUser.get('name')?.hasError('required') && createUser.get('name')?.touched" class="text-danger errorLabel">
-                the <strong>name</strong> is required
-              </span>
           </div>
+          <div *ngIf="createUser.get('name')?.hasError('required') && createUser.get('name')?.touched" class="text-danger errorLabel">
+            the <strong>name</strong> is required
+          </div>
+          <small class="text-danger" *ngIf="createUser.get('name')?.hasError('pattern')">length should be more than 3</small>
           <div class="input-group input-group-lg mb-3">
             <span class="input-group-text">
                 <i class="fas fa-user-circle" ></i>
             </span>
-            <input type="text" formControlName="username" class="form-control d-block" placeholder="UserName">
-            <p *ngIf="createUser.get('username')?.hasError('required') && createUser.get('username')?.touched" class="text-danger errorLabel">
-              the <strong>username</strong> is required
-            </p>
-          </div><div class="input-group input-group-lg mb-3">
+            <input type="text" formControlName="username" class="form-control" placeholder="UserName">
+          </div>
+          <p *ngIf="createUser.get('username')?.hasError('required') && createUser.get('username')?.touched" class="text-danger errorLabel">
+            the <strong>username</strong> is required
+          </p>
+          <small class="text-danger" *ngIf="createUser.get('username')?.hasError('pattern')">enter user name ex: tiaBassem (at least 8 max 20 at length , no space , no numbers and no symbols )</small>
+          <div class="input-group input-group-lg mb-3">
           <span class="input-group-text">
             <i class="fa-solid fa-envelope"></i>
           </span>
           <input type="text" formControlName="email" class="form-control" placeholder="Email">
+          </div>
           <span *ngIf="createUser.get('email')?.hasError('required') && createUser.get('email')?.touched" class="text-danger errorLabel">
             the <strong>email</strong> is required
           </span>
           <span *ngIf="createUser.get('email')?.hasError('email') && createUser.get('email')?.touched" class="text-danger errorLabel">
             the <strong>email</strong> is invalid
           </span>
-          </div>
           <div *ngIf="editFlag" class="input-group input-group-lg mb-3">
               <span class="input-group-text">
                 <i class="fa-solid fa-briefcase"></i>
@@ -53,17 +56,16 @@
           </div>
           <div class="row">
 
-              <div class="col-lg-6">
-                <div class="input-group input-group-lg mb-3">
-                    <span class="input-group-text">
-                      <i class="fa-solid fa-city"></i>
-                    </span>
-                    <input type="text" formControlName="city" class="form-control"
-                        placeholder="city">
-                        <span *ngIf="createUser.get('city')?.hasError('required') && createUser.get('city')?.touched" class="text-danger errorLabel">
-                          the <strong>city</strong> is required
-                        </span>
-                </div>
+          <div class="col-lg-6">
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <i class="fa-solid fa-city"></i>
+                </span>
+                <input type="text" formControlName="city" class="form-control"
+                    placeholder="city">
+
+            </div>
+
             </div>
               <div class="col-lg-6">
                   <div class="input-group input-group-lg mb-3">
@@ -72,21 +74,30 @@
                       </span>
                       <input type="text" formControlName="street" class="form-control"
                           placeholder="street">
-                          <span *ngIf="createUser.get('street')?.hasError('required') && createUser.get('street')?.touched" class="text-danger errorLabel">
-                            the <strong>street</strong> is required
-                          </span>
+
                   </div>
+
               </div>
           </div>
+          <span *ngIf="createUser.get('city')?.hasError('required') && createUser.get('city')?.touched" class="text-danger errorLabel">
+            the <strong>city</strong> is required
+          </span>
+          <div class="text-danger" *ngIf="createUser.get('city')?.hasError('pattern')">length should be more than 3</div>
+          <div *ngIf="createUser.get('street')?.hasError('required') && createUser.get('street')?.touched" class="text-danger errorLabel">
+            the <strong>street</strong> is required
+          </div>
+          <div class="text-danger" *ngIf="createUser.get('street')?.hasError('pattern')">length should be more than 3</div>
             <div class="input-group input-group-lg mb-3">
               <span class="input-group-text">
                 <i class="fa-solid fa-phone"></i>
               </span>
               <input type="text" formControlName="phone" class="form-control" placeholder="Phone number">
-              <span *ngIf="createUser.get('phone')?.hasError('required') && createUser.get('phone')?.touched" class="text-danger errorLabel">
-                the <strong>phone</strong> is required
-              </span>
+
           </div>
+          <span *ngIf="createUser.get('phone')?.hasError('required') && createUser.get('phone')?.touched" class="text-danger errorLabel">
+            the <strong>phone</strong> is required
+          </span>
+          <div class="text-danger" *ngIf="createUser.get('phone')?.hasError('pattern')">invalid</div>
           <div class="input-group input-group-lg mb-3">
             <span class="input-group-text">
               <i class="fa-solid fa-lock"></i>

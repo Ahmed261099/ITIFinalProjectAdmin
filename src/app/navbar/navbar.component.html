@@ -19,7 +19,7 @@
         <li class="nav-item px-lg-1">
           <a class="nav-link fs-5" aria-current="page"
           routerLinkActive="text-dark"
-          routerLink="/home">
+          routerLink="/Home">
             Home
           </a>
         </li>
@@ -70,7 +70,7 @@
             aria-current="page"
             routerLinkActive="text-dark"
             routerLink="/login"
-            (click)="logout()"
+            (click)="authService.logoutUser()"
           >
             LogOut
           </a>

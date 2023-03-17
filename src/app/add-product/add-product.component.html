@@ -1,0 +1,55 @@
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card text-center">
+  <div class="card-body">
+      <h5 class="fs-2 fw-bold mb-3 bg-dark py-3 text-white">{{title}}
+        <div *ngIf="loading" class="spinner-border float-right" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </h5>
+      <span *ngIf="submitted && addProductForm.invalid" class="badge badge-danger text-danger"> ALL FIELDS ARE REQUIRED</span>
+      <form  [formGroup]="addProductForm" (ngSubmit)="addEditProduct()">
+          <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                  <i class="fas fa-user-circle" ></i>
+              </span>
+              <input type="text" formControlName="name" class="form-control" placeholder="Name">
+              <span *ngIf="addProductForm.get('name')?.hasError('required') && addProductForm.get('name')?.touched" class="text-danger errorLabel">
+                the <strong>name</strong> is required
+              </span>
+          </div>
+          <div class="input-group input-group-lg mb-3">
+            <span class="input-group-text">
+                <i class="fas fa-user-circle" ></i>
+            </span>
+            <input type="text" formControlName="price" class="form-control d-block" placeholder="price">
+            <p *ngIf="addProductForm.get('price')?.hasError('required') && addProductForm.get('price')?.touched" class="text-danger errorLabel">
+              the <strong>price</strong> is required
+            </p>
+          </div><div class="input-group input-group-lg mb-3">
+          <span class="input-group-text">
+            <i class="fa-solid fa-envelope"></i>
+          </span>
+          <input type="text" formControlName="quantity" class="form-control" placeholder="quantity">
+          <span *ngIf="addProductForm.get('quantity')?.hasError('required') && addProductForm.get('quantity')?.touched" class="text-danger errorLabel">
+            the <strong>quantity</strong> is required
+          </span>
+          </div>
+        <div class="form-group input-group-lg mb-3">
+          <textarea class="form-control" formControlName="description"  id="exampleFormControlTextarea1" rows="3" placeholder="product description"></textarea>
+        </div>
+          <div class="d-grid gap-2">
+              <button Class="btn color btn-lg" type="submit">
+                  <i class="fas fa-database"></i> {{title}}
+              </button>
+          </div>
+      </form>
+  </div>
+</div>
+    </div>
+  </div>
+
+
+</div>
+

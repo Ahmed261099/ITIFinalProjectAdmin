@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   firebaseErrorMessage: string;
 
   constructor(
-    private authService: AuthServiceService,
+    public authService: AuthServiceService,
     private router: Router,
     private afAuth: AngularFireAuth
   ) {
@@ -28,30 +28,29 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (this.authService.userLoggedIn) {
       console.log('object');
-      this.router.navigate(['/Home']);
+      this.router.navigate(['Home']);
     }
   }
 
-  loginUser() {
+  // loginUser() {
+  //   if (this.loginForm.invalid) return;
 
-    if (this.loginForm.invalid) return;
-
-    this.authService
-      .loginUser(this.loginForm.value.email, this.loginForm.value.password)
-      .then((result) => {
-        // console.log(result);
-        if (result == null) {
-          if (this.authService.userLoggedIn) {
-            console.log('logging in...');
-            this.router.navigate(['/Home']);
-          } else {
-            // alert('you are not admin');
-            // this.loginForm.reset();
-          }
-        } else if (result.isValid == false) {
-          console.log('login error', result);
-          this.firebaseErrorMessage = result.message;
-        }
-      });
-  }
+  //   this.authService
+  //     .loginUser(this.loginForm.value.email, this.loginForm.value.password)
+  //     .then((result) => {
+  //       // console.log(result);
+  //       if (result == null) {
+  //         // if (this.authService.userLoggedIn) {
+  //         //   console.log('logging in...');
+  //         //   this.router.navigate(['/Home']);
+  //         // } else {
+  //         //   // alert('you are not admin');
+  //         //   // this.loginForm.reset();
+  //         // }
+  //       } else if (result.isValid == false) {
+  //         console.log('login error', result);
+  //         this.firebaseErrorMessage = result.message;
+  //       }
+  //     });
+  // }
 }

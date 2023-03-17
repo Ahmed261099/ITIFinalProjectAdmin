@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthServiceService } from '../../services/auth-service.service';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -22,19 +23,20 @@ export class CreateUserComponent {
     private fb: FormBuilder,
     private usersService: UsersService,
     private router: Router,
+    private authService: AuthServiceService,
     private _ActivatedRoute: ActivatedRoute
   )
   {
     this.createUser = this.fb.group({
-      name: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required, , Validators.pattern(/^[A-z]{3,}$/)]],
+      username: ['', [Validators.required, Validators.pattern(/^(?=[a-zA-Z]{8,20}$)/)]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(/^[A-z][A-z]{2,}[0-9]*@(gmail|yahoo)(.com|.eg|.edu)$/)]],
       // role: ['', Validators.required],
-      city: ['', Validators.required],
-      street: ['', Validators.required],
-      phone: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      city: ['', [Validators.required, Validators.pattern(/^[A-z]{3,}$/)]],
+      street: ['', [Validators.required, Validators.pattern(/^[A-z]{3,}$/)]],
+      phone: ['', [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)]],
+      confirmPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)]],
     });
     this.id = this._ActivatedRoute.snapshot.paramMap.get('id');
     this.role = this._ActivatedRoute.snapshot.paramMap.get('role');
@@ -66,6 +68,8 @@ export class CreateUserComponent {
   addUser() {
     if (this.createUser.invalid) return console.log('invalid');
 
+
+
     if(this.rols.nativeElement.value === "Engineer" || this.rols.nativeElement.value === "Provider"){
       const User: any = {
         name: this.createUser.value.name,
@@ -92,6 +96,9 @@ export class CreateUserComponent {
         spetialization: '',
         rate: 0,
       };
+
+      this.authService.SignUp(User.email, User.password);
+
       this.loading = true ;
       this.usersService
       .addUser(User)
@@ -99,10 +106,10 @@ export class CreateUserComponent {
         alert('added successfully');
         this.loading = false ;
         if (this.rols.nativeElement.value === 'Engineer')
-          this.router.navigate(['/engineer']);
+          this.router.navigate(['/Engineer']);
         else if (this.rols.nativeElement.value === 'Provider')
-          this.router.navigate(['/provider']);
-        else this.router.navigate(['/client']);
+          this.router.navigate(['/Provider']);
+        else this.router.navigate(['/customer']);
       })
       .catch((error) => {
         console.log(error);
@@ -139,7 +146,7 @@ export class CreateUserComponent {
         // else if (this.rols.nativeElement.value === 'Provider')
         //   this.router.navigate(['/provider']);
         // else
-        this.router.navigate(['/client']);
+        this.router.navigate(['/customer']);
       })
       .catch((error) => {
         console.log(error);
@@ -190,7 +197,7 @@ export class CreateUserComponent {
           phone: data.payload.data()['phone'],
           password: data.payload.data()['password'],
           confirmPassword: data.payload.data()['password'],
-          
+
         })
       })
     }
