@@ -5,7 +5,7 @@
     <button type="button" class="btn btn-warning ms-1 rounded-5 border
       border-dark border-2">Edit</button>
     <button type="button" class="btn btn-danger ms-1 rounded-5 border
-      border-dark border-2">Delete</button>
+      border-dark border-2" (click)="handleDelete(User?.email, User?.password, User?.id)">Delete</button>
   </div>
   <div class="row">
     <div class="col-lg-4">
@@ -131,7 +131,8 @@
                 </thead>
                 <tbody>
 
-                  <tr *ngFor="let single of User?.portofolio"
+                  <tr *ngFor="let single of User?.portofolio let i=
+                  index"
                     class="align-middle">
                     <td><div class="portfolio-img w-75 mx-auto"><img src={{single.image}} class="w-100 h-100" /></div></td>
                     <td class="col-4">{{single.caption}}</td>
@@ -140,7 +141,7 @@
                       <a class="text-warning me-2" title="Edit"
                         data-toggle="tooltip"><i class="fa-solid
                           fa-pen-to-square"></i></a>
-                      <a class="text-danger" title="Delete"
+                      <a class="text-danger" title="Delete" (click)="deletePortfolio(User.portofolio, i)"
                         data-toggle="tooltip hover"><i class="fa-solid fa-trash"></i></a>
                     </td>
                   </tr>

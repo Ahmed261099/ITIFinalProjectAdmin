@@ -15,4 +15,20 @@ export class CategoryService {
    {
       return this.firestore.collection('categories').snapshotChanges();
    }
+
+   getProducts(id: string): Observable<any>{
+      return this.firestore.collection('categories').doc(id).snapshotChanges();
+   }
+
+   getSingleProduct(id: string): Observable<any>{
+    return this.firestore.collection('engineers').doc(id).snapshotChanges();
+   }
+
+   addProduct(id: string, data: any): Promise<any>{                        // will solve with update
+    return this.firestore.collection('categories').doc(id).update(data);
+   }
+
+   updateProduct(id: string, data: any): Promise<any>{
+    return this.firestore.collection('engineers').doc(id).update(data);
+   }
 }

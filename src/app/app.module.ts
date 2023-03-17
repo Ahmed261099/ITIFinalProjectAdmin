@@ -38,6 +38,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { NgPipesModule } from 'ng-pipes';
 import { CategoryComponent } from './category/category.component';
 import { SingleUserComponent } from './single-user/single-user.component';
+import { SingleProductComponent } from './single-product/single-product.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { AuthServiceService } from './../services/auth-service.service';
 
 
 @NgModule({
@@ -50,11 +53,13 @@ import { SingleUserComponent } from './single-user/single-user.component';
     HomeComponent,
     SideBarMenuComponent,
     NotfoundComponent,
-    // CreateUserComponent,
+    CreateUserComponent,
     LoginComponent,
     // EditUserComponent,
     CategoryComponent,
-    // SingleUserComponent,
+    SingleUserComponent,
+    SingleProductComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +86,8 @@ import { SingleUserComponent } from './single-user/single-user.component';
     ScreenTrackingService,
     UserTrackingService,
     BrowserAnimationsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    AuthServiceService
   ],
   bootstrap: [AppComponent]
 })

@@ -8,7 +8,7 @@
             <h2>Clients <b>Management</b></h2>
           </div>
           <div class="col-sm-7" routerLink="/add">
-            <a routerLink="/add"  class="btn btn-secondary "><i class="fa-solid
+            <a routerLink="/add" class="btn btn-secondary "><i class="fa-solid
                 fa-user-plus"></i>
               <span>Add New client</span></a>
           </div>
@@ -17,6 +17,7 @@
       <table class="table table-striped table-hover align-middle">
         <thead class="table-dark">
           <tr>
+            <th>#</th>
             <th>id</th>
             <th>Name</th>
             <th>Email</th>
@@ -26,18 +27,24 @@
         </thead>
         <tbody>
           <tr *ngFor="let user of users; let i= index">
-            <!-- <td>{{i + 1}}</td> -->
+            <td>{{i + 1}}</td>
             <td>{{user.id}}</td>
-            <td><a><img [src]="user.image ? user.image : default" class="img-fluid avatar" alt="Avatar"> {{user.name}} </a></td>
+            <td><a><img [src]="user.image ? user.image : default"
+                  class="img-fluid avatar" alt="Avatar"> {{user.name}} </a></td>
             <td>{{user.email}}</td>
             <td>{{user.role}}</td>
             <td class="col-2">
               <a href="#" class="text-primary" title="Show detils"
-                data-toggle="tooltip" routerLink="/customer/viewUser/{{user.id}}"><i class="fa-solid fa-eye"></i></a>
-              <a routerLink="/edit/{{user.role}}/{{user.id}}" class="text-warning" title="Edit"
+                data-toggle="tooltip"
+                routerLink="/customer/viewUser/{{user.id}}"><i class="fa-solid
+                  fa-eye"></i></a>
+              <a routerLink="/edit/{{user.role}}/{{user.id}}"
+                class="text-warning" title="Edit"
                 data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a class="text-danger" title="Delete"
-                data-toggle="tooltip hover"><i class="fa-solid fa-trash"></i></a>
+              <a class="text-danger hover" title="Delete"
+                (click)="handleDelete(user.email,
+                user.password, user.id, user.role)"
+                data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
             </td>
           </tr>
         </tbody>
