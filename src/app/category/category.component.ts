@@ -13,6 +13,7 @@ import { UsersService } from '../../services/users.service';
 export class CategoryComponent {
   categoryId: any;
   Product: any;
+  i: number = 0;
   default: string = '../../assets/images/default.jpg';
   constructor(
     firestore: AngularFirestore,

@@ -18,7 +18,7 @@
         <thead class="table-dark">
           <tr>
             <th>#</th>
-            <th>id</th>
+            <!-- <th>id</th> -->
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
@@ -28,7 +28,7 @@
         <tbody>
           <tr *ngFor="let user of users; let i= index">
             <td>{{i + 1}}</td>
-            <td>{{user.id}}</td>
+            <!-- <td>{{user.id}}</td> -->
             <td><a class=""><img [src]="user.image ? user.image : default"
                   class="avatar" alt="Avatar"> {{user.name}} </a>
             </td>
