@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { CategoryService } from '../../services/category.service';
 import { UsersService } from '../../services/users.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category',
@@ -20,7 +21,8 @@ export class CategoryComponent {
     private authService: AuthServiceService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -46,10 +48,10 @@ export class CategoryComponent {
 
     if(confirm("Are you sure to delete this feedback?")){
     this.categoryService.deleteProduct(id, newProduct).then(() => {
-        console.log('success');
+      this.toastr.success('item deleted successfully');
       })
       .catch((error) => {
-        console.log(error);
+        this.toastr.error(error.code);
       });
     }
   }

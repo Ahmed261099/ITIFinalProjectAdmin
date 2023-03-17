@@ -54,6 +54,7 @@ export class AuthServiceService {
           if (user?.uid === "MQmXgjJBU6WGKNuPwB73ctYhmK33") {
             console.log(user);
             this.userLoggedIn = true;
+            this.toastr.success("logged in successfully")
             this.router.navigate(['Home']);
           }
           else{

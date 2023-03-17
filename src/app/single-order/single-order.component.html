@@ -15,22 +15,21 @@
           <thead class="table-dark">
             <tr>
               <th>id</th>
-              <th>Name</th>
-              <th>Email</th>
               <th>Product</th>
               <th>Price</th>
               <th>Quantity</th>
               <th>Total Price</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let order of orderFilter; let i= index" class="align-middle">
+          <tbody *ngFor="let order of orderFilter; let i= index" class="align-middle">
+              <!-- <td><img class="img-fluid avatar" [src]="order.getOrder.image"/>{{order.getOrder.name}}</td>
+              <td>{{order.getOrder.email}}</td> -->
+              <tr *ngFor="let item of order.getOrder.order">
               <td>{{i + 1}}</td>
-              <td><img class="img-fluid avatar" [src]="order.getOrder.image"/>{{order.getOrder.name}}</td>
-              <td>{{order.getOrder.email}}</td>
-              <td><img class="img-fluid avatar" [src]="order.getOrder.order[i]?.image"/>{{order.getOrder.order[i]?.name}}</td>
-              
-              <td>{{order.getOrder.order[i]?.price}}</td>
-              <td>{{order.getOrder.order[i]?.quantity}}</td>
-              <td>{{order.getOrder.order[i]?.quantity*order.getOrder.order[i]?.price}}</td>
+              <td><img class="img-fluid avatar" [src]="item?.image"/>{{item?.name}}</td>
+
+              <td>{{item?.price}}</td>
+              <td>{{item?.quantity}}</td>
+              <td>{{item?.quantity*item?.price}}</td>
+              </tr>
               </tbody>

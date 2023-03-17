@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { UsersService } from '../../services/users.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-engineer',
@@ -20,7 +21,8 @@ export class EngineerComponent {
     firestore: AngularFirestore,
     private authService: AuthServiceService,
     private usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -50,10 +52,10 @@ export class EngineerComponent {
       this.usersService
         .deleteSingleUser(id, role)
         .then(() => {
-          console.log('deleted successfully');
+          this.toastr.success('Engineer deleted successfully');
         })
         .catch((error) => {
-          console.log(error);
+          this.toastr.error(error.code);
         });
     }
   }

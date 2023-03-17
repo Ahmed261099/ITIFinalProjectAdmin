@@ -37,7 +37,7 @@ export class AddProductComponent {
   )
   {
     this.addProductForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', Validators.required, Validators.pattern(/^([A-z]{3,}|[A-z]{3,} [A-z]{3,})$/)],
       price: ['', Validators.required],
       quantity: ['', Validators.required],
       description: ['', Validators.required],
@@ -107,6 +107,7 @@ export class AddProductComponent {
       .then(() => {
         alert('added successfully');
         this.loading = false ;
+        this.addProductForm.reset();
         // if (this.rols.nativeElement.value === 'Engineer')
         //   this.router.navigate(['/engineer']);
         // else if (this.rols.nativeElement.value === 'Provider')

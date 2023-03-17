@@ -15,14 +15,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
-        <li class="nav-item px-lg-1">
+      <ul class="navbar-nav  mb-2 mb-lg-0 ms-auto">
+        <!-- <li class="nav-item px-lg-1">
           <a class="nav-link fs-5" aria-current="page"
           routerLinkActive="text-dark"
           routerLink="/Home">
             Home
           </a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item px-lg-1">
           <a
             class="nav-link fs-5"
@@ -54,7 +54,7 @@
             Settings
           </a>
         </li> -->
-        <li class="nav-item px-lg-1" *ngIf="!authService.userLoggedIn">
+        <li class="nav-item px-lg-1 ms-auto" *ngIf="!authService.userLoggedIn">
           <a
             class="nav-link fs-5"
             aria-current="page"
@@ -64,7 +64,7 @@
             Login
           </a>
         </li>
-        <li class="nav-item px-lg-1" *ngIf="authService.userLoggedIn">
+        <li class="nav-item px-lg-1 ms-auto" *ngIf="authService.userLoggedIn">
           <a
             class="nav-link fs-5"
             aria-current="page"

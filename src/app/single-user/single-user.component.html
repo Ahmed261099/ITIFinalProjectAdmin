@@ -1,10 +1,10 @@
 <div class="container py-5">
   <div class="d-flex justify-content-end mb-2 ms-auto">
-    <button type="button" class="btn btn-primary rounded-5 border border-dark
-      border-2">Back</button>
-    <button type="button" class="btn btn-warning ms-1 rounded-5 border
-      border-dark border-2">Edit</button>
-    <button type="button" class="btn btn-danger ms-1 rounded-5 border
+    <!-- <button type="button" class="btn btn-primary border border-dark
+      border-2" routerLink="/edit">Back</button> -->
+    <button type="button" class="btn btn-warning ms-1 border
+      border-dark border-2" routerLink="/edit/{{User?.role}}/{{User?.id}}">Edit</button>
+    <button type="button" class="btn btn-danger ms-1 border
       border-dark border-2" (click)="handleDelete(User?.email, User?.password, User?.id)">Delete</button>
   </div>
   <div class="row">
@@ -138,9 +138,9 @@
                     <td class="col-4">{{single.caption}}</td>
                     <td class="col-4">{{single.title}}</td>
                     <td class="col-2">
-                      <a class="text-warning me-2" title="Edit"
+                      <!-- <a class="text-warning me-2" title="Edit"
                         data-toggle="tooltip"><i class="fa-solid
-                          fa-pen-to-square"></i></a>
+                          fa-pen-to-square"></i></a> -->
                       <a class="text-danger" title="Delete" (click)="deletePortfolio(User.portofolio, i)"
                         data-toggle="tooltip hover"><i class="fa-solid fa-trash"></i></a>
                     </td>
@@ -154,38 +154,6 @@
           </div>
         </div>
 
-        <!-- <div class="card mb-4 mt-4 mb-md-0">
-          <div class="card-body">
-            <p class="mb-4 fs-3 fw-bold">
-              Messages
-            </p>
-            <div class="table-responsive" *ngIf="User?.messages?.length">
-              <table class="table table-hover table-striped">
-                <thead class="table-dark">
-                  <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>message</th>
-                    <th>role</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  <tr *ngFor="let single of User?.messages"
-                    class="align-middle">
-                    <td>{{single.uid}}</td>
-                    <td class="col-4">{{single.name}}</td>
-                    <td class="col-4">{{single.text}}</td>
-                    <td class="col-4">{{single.role}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div *ngIf="!User?.messages?.length">
-              <p class="text-center fs-5 text-danger">No Messages to show!</p>
-            </div>
-          </div>
-        </div> -->
 
 
 
@@ -203,7 +171,6 @@
                     <th>name</th>
                     <th>price</th>
                     <th>quantity</th>
-                    <!-- <th>Action</th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -214,13 +181,6 @@
                     <td class="col-4">{{single.name}}</td>
                     <td class="col-4">{{single.price}}</td>
                     <td class="col-4">{{single.quantity}}</td>
-                    <!-- <td class="col-2">
-                      <a class="text-warning me-2" title="Edit"
-                        data-toggle="tooltip"><i class="fa-solid
-                          fa-pen-to-square"></i></a>
-                      <a class="text-danger" title="Delete"
-                        data-toggle="tooltip hover"><i class="fa-solid fa-trash"></i></a>
-                    </td> -->
                   </tr>
                 </tbody>
               </table>
@@ -243,7 +203,6 @@
                     <th>id</th>
                     <th>name</th>
                     <th>role</th>
-                    <!-- <th>Action</th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -252,13 +211,6 @@
                     <td class="col-4">{{single.id}}</td>
                     <td class="col-4">{{single.name}}</td>
                     <td class="col-4">{{single.role}}</td>
-                    <!-- <td class="col-2">
-                      <a class="text-warning me-2" title="Edit"
-                        data-toggle="tooltip"><i class="fa-solid
-                          fa-pen-to-square"></i></a>
-                      <a class="text-danger" title="Delete"
-                        data-toggle="tooltip hover"><i class="fa-solid fa-trash"></i></a>
-                    </td> -->
                   </tr>
                 </tbody>
               </table>

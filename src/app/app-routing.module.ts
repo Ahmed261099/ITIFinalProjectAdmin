@@ -16,7 +16,7 @@ import { SingleProductComponent } from './single-product/single-product.componen
 import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: 'Home', component: HomeComponent, canActivate: [AuthGuardGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'add', component: CreateUserComponent, canActivate: [AuthGuardGuard] },
@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'Engineer',
     children: [
-      { path: '', component: EngineerComponent },
+      { path: '', component: EngineerComponent, canActivate: [AuthGuardGuard] },
       { path: 'viewUser/:userID', component: SingleUserComponent, canActivate: [AuthGuardGuard] },
       // {path: "add/:userID", component: SingleUserComponent, canActivate: [AuthGuardGuard]}
     ],

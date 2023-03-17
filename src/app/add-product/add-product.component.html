@@ -14,28 +14,31 @@
               <span class="input-group-text">
                   <i class="fas fa-user-circle" ></i>
               </span>
-              <input type="text" formControlName="name" class="form-control" placeholder="Name">
+          <input type="text" formControlName="name" class="form-control" placeholder="Name">
+          </div>
               <span *ngIf="addProductForm.get('name')?.hasError('required') && addProductForm.get('name')?.touched" class="text-danger errorLabel">
                 the <strong>name</strong> is required
               </span>
-          </div>
+              <div class="text-danger" *ngIf="addProductForm.get('confirmPassword')?.hasError('pattern')">invalid</div>
           <div class="input-group input-group-lg mb-3">
             <span class="input-group-text">
                 <i class="fas fa-user-circle" ></i>
             </span>
             <input type="text" formControlName="price" class="form-control d-block" placeholder="price">
-            <p *ngIf="addProductForm.get('price')?.hasError('required') && addProductForm.get('price')?.touched" class="text-danger errorLabel">
-              the <strong>price</strong> is required
-            </p>
-          </div><div class="input-group input-group-lg mb-3">
+
+          </div>
+          <p *ngIf="addProductForm.get('price')?.hasError('required') && addProductForm.get('price')?.touched" class="text-danger errorLabel">
+            the <strong>price</strong> is required
+          </p>
+            <div class="input-group input-group-lg mb-3">
           <span class="input-group-text">
             <i class="fa-solid fa-envelope"></i>
           </span>
           <input type="text" formControlName="quantity" class="form-control" placeholder="quantity">
+          </div>
           <span *ngIf="addProductForm.get('quantity')?.hasError('required') && addProductForm.get('quantity')?.touched" class="text-danger errorLabel">
             the <strong>quantity</strong> is required
           </span>
-          </div>
         <div class="form-group input-group-lg mb-3">
           <textarea class="form-control" formControlName="description"  id="exampleFormControlTextarea1" rows="3" placeholder="product description"></textarea>
         </div>
