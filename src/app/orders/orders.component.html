@@ -1,0 +1,42 @@
+<div class="container-xl">
+    <!-- <button class="btn btn-dark" (click)="logout()">Logout</button> -->
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-5">
+              <h2> <b>Orders Management</b></h2>
+            </div>
+            <div class="col-sm-7">
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>id</th>
+              <th>order ID</th>
+              <!-- <th>Email</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th> -->
+              <th>View Order</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders; let i= index" class="align-middle">
+              <td>{{i + 1}}</td>
+              <td>{{order.getOrder.id}}</td>
+              <!-- <td><img class="img-fluid avatar" [src]="order.getOrder.image"/>{{order.getOrder.name}}</td> -->
+              <!-- <td><a><img [src]="order.getOrder.image ? order.image : default"
+                    class="img-fluid avatar" alt="user"> {{order.getOrder.name}} </a></td> -->
+              <!-- <td>{{order.getOrder.email}}</td>
+              <td><img class="img-fluid avatar" [src]="order.getOrder.order[i]?.image"/>{{order.getOrder.order[i]?.name}}</td>
+              <td>{{order.getOrder.order[i]?.price}}</td>
+              <td>{{order.getOrder.order[i]?.quantity}}</td> -->
+              <td class="col-2">
+                <a class="text-primary" title="Show detils"
+                  data-toggle="tooltip"
+                  routerLink="viewOrders/{{order.getOrder.id}}"><i class="fa-solid
+                    fa-eye"></i></a></td>
+              </tbody>

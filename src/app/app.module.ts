@@ -41,6 +41,8 @@ import { SingleUserComponent } from './single-user/single-user.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AuthServiceService } from './../services/auth-service.service';
+import { OrdersComponent } from './orders/orders.component';
+import { SingleOrderComponent } from './single-order/single-order.component';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { AuthServiceService } from './../services/auth-service.service';
     SingleUserComponent,
     SingleProductComponent,
     AddProductComponent,
+    OrdersComponent,
+    SingleOrderComponent,
   ],
   imports: [
     BrowserModule,
