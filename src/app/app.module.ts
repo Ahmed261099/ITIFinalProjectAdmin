@@ -45,6 +45,8 @@ import { CommonModule } from '@angular/common';
 
 import { ToastrModule } from 'ngx-toastr';
 
+import { OrdersComponent } from './orders/orders.component';
+import { SingleOrderComponent } from './single-order/single-order.component';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { ToastrModule } from 'ngx-toastr';
     SingleUserComponent,
     SingleProductComponent,
     AddProductComponent,
+    OrdersComponent,
+    SingleOrderComponent,
   ],
   imports: [
     BrowserModule,

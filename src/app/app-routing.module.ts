@@ -9,9 +9,11 @@ import { AuthGuardGuard } from './../services/auth-guard.guard';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SingleUserComponent } from './single-user/single-user.component';
+import { SingleOrderComponent } from './single-order/single-order.component';
 import { CategoryComponent } from './category/category.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { SingleProductComponent } from './single-product/single-product.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -52,12 +54,21 @@ const routes: Routes = [
       { path: 'viewProduct/:productID', component: SingleProductComponent, canActivate: [AuthGuardGuard] },
     ],
   },
+  {
+    path: 'orders',
+    children: [
+      { path: '', component: OrdersComponent, canActivate: [AuthGuardGuard] },
+      { path: 'viewOrders/:orderID', component: SingleOrderComponent, canActivate: [AuthGuardGuard] },
+    ],
+  },
   { path: 'addProduct/:category', component: AddProductComponent, canActivate: [AuthGuardGuard] },
-  { path: '**', component: NotfoundComponent, canActivate: [AuthGuardGuard] },
+  { path: 'editProduct/category/:name/:id', component: AddProductComponent, canActivate: [AuthGuardGuard] },
+  { path: '**', component: NotfoundComponent },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

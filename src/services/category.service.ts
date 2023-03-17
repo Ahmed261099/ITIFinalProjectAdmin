@@ -28,8 +28,12 @@ export class CategoryService {
     return this.firestore.collection('categories').doc(id).update(data);
    }
 
+  //  getSingleProduct(id: string): Observable<any>{
+  //   return this.firestore.collection('categories').doc(id).snapshotChanges();
+  //  }
+
    updateProduct(id: string, data: any): Promise<any>{
-    return this.firestore.collection('engineers').doc(id).update(data);
+    return this.firestore.collection('categories').doc(id).update(data);
    }
 
    deleteProduct(id: string, data:any): Promise<any>{

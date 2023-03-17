@@ -34,7 +34,7 @@
             <td class="col-2">
               <a href="#" class="text-primary" title="Show detils"
                 data-toggle="tooltip" routerLink="/category/{{product.spetialization}}/viewProduct/{{product.id}}"><i class="fa-solid fa-eye"></i></a>
-              <a routerLink="/edit/{{product.role}}/{{product.id}}" class="text-warning" title="Edit"
+              <a routerLink="/editProduct/category/{{product.spetialization}}/{{product.id}}" class="text-warning" title="Edit"
                 data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
               <a class="text-danger hover" title="Delete"
                 data-toggle="tooltip" (click)="_deleteProduct(product.spetialization, Product.products, i)"><i class="fa-solid fa-trash"></i></a>

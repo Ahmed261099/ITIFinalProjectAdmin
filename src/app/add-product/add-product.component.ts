@@ -13,12 +13,12 @@ import { CategoryService } from '../../services/category.service';
 export class AddProductComponent {
 
   // @ViewChild('rols') rols!: ElementRef;
-
+  Product:any ;
   addProductForm: FormGroup;
   submitted = false;
   loading = false;
   id: string | null ;
-  role : string | null ;
+  updatedProductId:string |null ;
   title: string = `Add Product`
   editFlag:boolean = true ;
   productId: any;
@@ -42,15 +42,15 @@ export class AddProductComponent {
       quantity: ['', Validators.required],
       description: ['', Validators.required],
     });
-    this.id = this._ActivatedRoute.snapshot.paramMap.get('id');
-    this.role = this._ActivatedRoute.snapshot.paramMap.get('role');
-    console.log(this.id)
-    console.log(this.role)
+    this.id = this._ActivatedRoute.snapshot.paramMap.get('name');
+    this.updatedProductId = this._ActivatedRoute.snapshot.paramMap.get('id')
+    console.log("Hi yasmeen"+this.updatedProductId)
   }
   ngOnInit(): void {
+    this.isEdit();
     this.productId = this.route.snapshot.paramMap.get('category');
     this.getProduct();
-    this.isEdit();
+    this.getProducts();
   }
 
   addEditProduct()
@@ -60,13 +60,13 @@ export class AddProductComponent {
     {
       return ;
     }
-    if(this.id === null && this.role === null)
+    if(this.id === null)
     {
       this.addProduct();
     }
     else
     {
-      this.EditProduct(this.id , this.role);
+      this.EditProduct(this.id);
       this.editFlag = false ;
     }
   }
@@ -118,50 +118,68 @@ export class AddProductComponent {
         this.loading = false ;
       });
   }
+  // deletePortfolio(portfolio: any[], i: number) {
+  //   this.userId = this.route.snapshot.paramMap.get('userID');
+  //   console.log(portfolio, i, this.userId);
+  //   const newPortfolio: any = {
+  //     portofolio: portfolio.filter((_, index) => index++ !== i),
+  //   };
 
-  EditProduct(id: any , role:any)
+  //   console.log(newPortfolio);
+  //   if(confirm("Are you sure to delete this portfolio?")){
+  //     this.userService
+  //     .editField(this.userId, newPortfolio, this.role)
+  //     .then(() => {
+  //       console.log('success');
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  //   }
+  // }
+  getProducts() {
+    if(this.id !== null)
+    {
+      this.categoryService.getProducts(this.id).subscribe((product) => {
+        this.Product = product.payload.data();
+    })
+    };
+  }
+  EditProduct(id: any )
   {
+
+    console.log("update ya ahmed" +id)
+
       const product:any = {
         name:  this.addProductForm.value.name ,
-        username:  this.addProductForm.value.username,
-        email:  this.addProductForm.value.email,
-        emailFormated: this.addProductForm.value.email.toLowerCase(),
-        address: [
-          {
-            city : this.addProductForm.value.city,
-            street: this.addProductForm.value.street
-          }
-        ],
-        phone: this.addProductForm.value.phone,
-        password: this.addProductForm.value.password
+        price:  this.addProductForm.value.price,
+        quantity:  this.addProductForm.value.quantity,
+        description: this.addProductForm.value.description,
       }
-
       this.loading = true ;
-      this.categoryService.updateProduct(id , role).then(() => {
+      this.categoryService.updateProduct(id ,product).then(() => {
         this.loading = false ;
-        this.router.navigate([`/${role}`])
+        // this.router.navigate([`/category/${id}`])
       })
   }
+
   isEdit()
   {
-    if(this.id !== null && this.role !== null)
+    if(this.id !== null)
     {
-      this.title = `Edit ${this.role}` ;
+      this.title = `Edit Product` ;
       this.loading = true;
       this.editFlag = false ;
       this.categoryService.getSingleProduct(this.id).subscribe( (data) => {
+        const productsUpdated:any[] = data.payload.data().products;
+        const productUpdate:any = productsUpdated.filter( (p) => p.id === this.updatedProductId)
+        console.log( productUpdate[0].name  )
         this.loading = false ;
-        console.log(data.payload.data().wishlist)
         this.addProductForm.setValue({
-          name: data.payload.data()['name'],
-          username: data.payload.data()['username'],
-          email: data.payload.data()['email'],
-          city: data.payload.data().address[0].city,
-          street: data.payload.data().address[0].street,
-          phone: data.payload.data()['phone'],
-          password: data.payload.data()['password'],
-          confirmPassword: data.payload.data()['password'],
-
+          name: productUpdate[0].name,
+          price: productUpdate[0].price,
+          quantity: productUpdate[0].quantity,
+          description: productUpdate[0].description,
         })
       })
     }
