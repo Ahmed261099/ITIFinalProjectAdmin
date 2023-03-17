@@ -11,8 +11,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
-  {path:"", redirectTo:"Home" , pathMatch:"full"},
-  {path:"Home" , component:HomeComponent},
+  {path:"", redirectTo:"home" , pathMatch:"full"},
+  {path:"home" , component:HomeComponent},
   {path: "login", component: LoginComponent },
   {path: "add", component: CreateUserComponent},
   {path: "edit/:role/:id", component: CreateUserComponent},
