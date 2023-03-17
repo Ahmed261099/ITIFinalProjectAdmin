@@ -31,38 +31,8 @@ export class CategoryComponent {
   getProducts() {
     this.categoryService.getProducts(this.categoryId).subscribe((product) => {
       this.Product = product.payload.data();
-      // console.log(this.Product.products);
     });
   }
+  
 
-  // getEngineers() {
-  //   console.log(this.s);
-  //   this.usersService.getUsers(this.s).subscribe((data) => {
-  //     this.products = [];
-  //     data.forEach((element: any) => {
-  //       this.products.push({
-  //         id: element.payload.doc.id,
-  //         ...element.payload.doc.data(),
-  //       });
-  //     });
-  //     console.log(this.products);
-  //   });
-  // }
-
-  // handleDelete(email: string, password: string, id: string, role: string) {
-  //   console.log(email, password, id, role);
-  //   console.log('delete?');
-  //   this.result = confirm('Are you sure to delete?');
-  //   if (this.result) {
-  //     this.authService.deleteUserFromAuth(email, password);
-  //     this.usersService
-  //       .deleteSingleUser(id, role)
-  //       .then(() => {
-  //         console.log('deleted successfully');
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-  // }
 }

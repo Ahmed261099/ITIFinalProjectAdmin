@@ -52,6 +52,7 @@ const routes: Routes = [
     ],
   },
   { path: 'addProduct/:category', component: AddProductComponent },
+  { path: 'editProduct/category/:name/:id', component: AddProductComponent },
   { path: '**', component: NotfoundComponent },
 
 ];
