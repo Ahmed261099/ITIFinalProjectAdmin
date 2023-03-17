@@ -49,7 +49,7 @@ const routes: Routes = [
     children: [
       { path: '', component: CategoryComponent },
       { path: 'viewProduct/:productID', component: SingleUserComponent },
-    ],
+    ], 
   },
   { path: 'addProduct/:category', component: AddProductComponent },
   { path: '**', component: NotfoundComponent },
