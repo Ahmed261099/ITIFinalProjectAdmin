@@ -9,8 +9,10 @@ import { AuthGuardGuard } from './../services/auth-guard.guard';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SingleUserComponent } from './single-user/single-user.component';
+import { SingleOrderComponent } from './single-order/single-order.component';
 import { CategoryComponent } from './category/category.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -49,6 +51,13 @@ const routes: Routes = [
     children: [
       { path: '', component: CategoryComponent },
       { path: 'viewProduct/:productID', component: SingleUserComponent },
+    ],
+  },
+  {
+    path: 'orders',
+    children: [
+      { path: '', component: OrdersComponent },
+      { path: 'viewOrders/:orderID', component: SingleOrderComponent },
     ],
   },
   { path: 'addProduct/:category', component: AddProductComponent },
