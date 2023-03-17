@@ -23,7 +23,7 @@
             Home
           </a>
         </li>
-        <li class="nav-item px-lg-1">
+        <!-- <li class="nav-item px-lg-1">
           <a
             class="nav-link fs-5"
             aria-current="page"
@@ -53,8 +53,8 @@
           >
             Settings
           </a>
-        </li>
-        <li class="nav-item px-lg-1">
+        </li> -->
+        <li class="nav-item px-lg-1" *ngIf="!authService.userLoggedIn">
           <a
             class="nav-link fs-5"
             aria-current="page"
@@ -64,7 +64,7 @@
             Login
           </a>
         </li>
-        <li class="nav-item px-lg-1">
+        <li class="nav-item px-lg-1" *ngIf="authService.userLoggedIn">
           <a
             class="nav-link fs-5"
             aria-current="page"
@@ -72,7 +72,7 @@
             routerLink="/login"
             (click)="authService.logoutUser()"
           >
-            LogOut
+            Logout
           </a>
         </li>
       </ul>

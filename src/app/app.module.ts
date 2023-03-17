@@ -41,6 +41,10 @@ import { SingleUserComponent } from './single-user/single-user.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AuthServiceService } from './../services/auth-service.service';
+import { CommonModule } from '@angular/common';
+
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 @NgModule({
@@ -81,6 +85,9 @@ import { AuthServiceService } from './../services/auth-service.service';
     ReactiveFormsModule,
     HttpClientModule,
     NgPipesModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     ScreenTrackingService,

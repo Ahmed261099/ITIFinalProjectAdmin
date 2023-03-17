@@ -37,7 +37,7 @@
               <a routerLink="/edit/{{product.role}}/{{product.id}}" class="text-warning" title="Edit"
                 data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
               <a class="text-danger hover" title="Delete"
-                data-toggle="tooltip" ><i class="fa-solid fa-trash"></i></a>
+                data-toggle="tooltip" (click)="_deleteProduct(product.spetialization, Product.products, i)"><i class="fa-solid fa-trash"></i></a>
             </td>
             <!-- (click)="handleDelete(product.email,
             product.password, product.id, product.role)" -->

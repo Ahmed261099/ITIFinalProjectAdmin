@@ -46,7 +46,7 @@ export class EngineerComponent {
     console.log('delete?');
     this.result = confirm('Are you sure to delete?');
     if (this.result) {
-      this.authService.deleteUserFromAuth(email, password);
+      // this.authService.deleteUserFromAuth(email, password);
       this.usersService
         .deleteSingleUser(id, role)
         .then(() => {

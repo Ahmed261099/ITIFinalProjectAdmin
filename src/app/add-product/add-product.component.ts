@@ -90,7 +90,7 @@ export class AddProductComponent {
             price: this.addProductForm.value.price,
             quantity: this.addProductForm.value.quantity,
             description: this.addProductForm.value.description,
-            image: "",
+            image: "https://firebasestorage.googleapis.com/v0/b/project-iti-d4ddb.appspot.com/o/defaultProductImage.jpg?alt=media&token=7953f354-e39b-4c0b-aacc-811f555dcaa2",
             spetialization: this.productId
         };
 

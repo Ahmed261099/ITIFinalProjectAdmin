@@ -29,7 +29,7 @@ export class CreateUserComponent {
   {
     this.createUser = this.fb.group({
       name: ['', [Validators.required, , Validators.pattern(/^[A-z]{3,}$/)]],
-      username: ['', [Validators.required, Validators.pattern(/^(?=[a-zA-Z]{8,20}$)/)]],
+      username: ['', [Validators.required, Validators.pattern(/^[A-z] {8,20}$/)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(/^[A-z][A-z]{2,}[0-9]*@(gmail|yahoo)(.com|.eg|.edu)$/)]],
       // role: ['', Validators.required],
       city: ['', [Validators.required, Validators.pattern(/^[A-z]{3,}$/)]],
@@ -86,7 +86,7 @@ export class CreateUserComponent {
         phone: this.createUser.value.phone,
         password: this.createUser.value.password,
         timestamp: new Date(),
-        image: '',
+        image: 'https://console.firebase.google.com/u/0/project/project-iti-d4ddb/storage/project-iti-d4ddb.appspot.com/files',
         cart: [],
         wishlist: [],
         experience: '',

@@ -92,7 +92,7 @@ export class SingleUserComponent {
     console.log('delete?');
     this.result = confirm('Are you sure to delete?');
     if (this.result) {
-      this.authService.deleteUserFromAuth(email, password);
+      // this.authService.deleteUserFromAuth(email, password);
       this.userService
         .deleteSingleUser(this.userId, this.role)
         .then(() => {

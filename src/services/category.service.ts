@@ -21,7 +21,7 @@ export class CategoryService {
    }
 
    getSingleProduct(id: string): Observable<any>{
-    return this.firestore.collection('engineers').doc(id).snapshotChanges();
+    return this.firestore.collection('categories').doc(id).snapshotChanges();
    }
 
    addProduct(id: string, data: any): Promise<any>{                        // will solve with update
@@ -30,5 +30,9 @@ export class CategoryService {
 
    updateProduct(id: string, data: any): Promise<any>{
     return this.firestore.collection('engineers').doc(id).update(data);
+   }
+
+   deleteProduct(id: string, data:any): Promise<any>{
+    return this.firestore.collection('categories').doc(id).update(data);
    }
 }

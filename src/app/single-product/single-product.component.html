@@ -1,1 +1,47 @@
-<p>single-product works!</p>
+<div class="container">
+  <div class="col-lg-10 border p-3 mx-auto bg-white">
+      <div class="row ms-2 fs-2 fw-bold py-5 text-center">
+          {{newArray[0]?.spetialization | uppercase}} CATEGORY
+      </div>
+      <div class="row m-0">
+          <div class="col-lg-5 pb-3 d-flex flex-column">
+              <img src={{newArray[0]?.image}} class="img w-100 h-75 border ">
+              <div class="col-lg-12 mt-3">
+                <div class="row mt-5">
+                    <div class="col-lg-6 pb-2">
+                        <a href="#" class="btn btn-danger w-100">Delete</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="#" class="btn btn-warning w-100">Edit</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+              <div class="border p-3 m-0  w-100 h-75">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <p class="mb-2 p-0 name fw-bold">{{newArray[0]?.name}}</p>
+                      </div>
+                      <div class="col-lg-12">
+                          <p class="my-2 p-0 fs-5 text-danger">{{newArray[0]?.price}} EGP</p>
+                          <hr class="p-0 m-0">
+                      </div>
+                      <div class="col-lg-12 pt-2">
+                          <h5 class="fs-5">Product Details</h5>
+                          <span class="fs-6 mb-3">{{newArray[0]?.description}}</span>
+                          <hr class="m-0 pt-2 mt-3">
+                      </div>
+                      <div class="col-lg-12">
+                          <p class="tag-section fs-5 mt-2"><strong>Tag : </strong><a routerLink="/category/{{newArray[0].spetialization}}">{{newArray[0]?.spetialization}}</a><a>, {{newArray[0]?.name}}</a></p>
+                      </div>
+                      <div class="col-lg-12">
+                          <h6 class="fs-6 fw-bold mt-3">Quantity : <span class="text-danger">{{newArray[0]?.quantity}}</span></h6>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>

@@ -52,7 +52,7 @@ export class ClientComponent {
     console.log('delete?');
     this.result = confirm('Are you sure to delete?');
     if (this.result) {
-      await this.authService.deleteUserFromAuth(email, password);
+      // await this.authService.deleteUserFromAuth(email, password);
       this.usersService
         .deleteSingleUser(id, role)
         .then(() => {
