@@ -37,7 +37,7 @@ export class AddProductComponent {
   )
   {
     this.addProductForm = this.fb.group({
-      name: ['', Validators.required, Validators.pattern(/^([A-z]{3,}|[A-z]{3,} [A-z]{3,})$/)],
+      name: ['', Validators.required],
       price: ['', Validators.required],
       quantity: ['', Validators.required],
       description: ['', Validators.required],
@@ -149,7 +149,7 @@ export class AddProductComponent {
   EditProduct(id: any )
   {
 
-    console.log("update ya ahmed" +id)
+    // console.log("update ya ahmed" +id)
 
       const product:any = {
         name:  this.addProductForm.value.name ,
